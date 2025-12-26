@@ -465,31 +465,33 @@
         "Woven_100% Bareloom Rammus-331", "Woven_100% Bareloom Red Knaf-324"
     ];
 
-   // 使用 encodeURIComponent 处理路径，确保特殊字符（如 % 和空格）能被 GitHub Pages 正确读取
-    const fabricData = {
+  const fabricData = {
         blackout: blackoutFiles.map(file => ({
             name: file.replace('Blackout_', '').replace(/_/g, ' '),
-            img: `image/fabrics/${encodeURIComponent(file)}.png` 
+            // 如果你的 Blackout 图片在 image/Blackout 文件夹里：
+            img: `image/Blackout/${encodeURIComponent(file)}.png` 
         })),
         filtering: filteringFiles.map(file => ({
             name: file.replace('Light Filtering_', '').replace(/_/g, ' '),
-            img: `image/fabrics/${encodeURIComponent(file)}.png`
+            // 修正为：image/Light Filtering/
+            img: `image/Light Filtering/${encodeURIComponent(file)}.png`
         })),
         zebra: zebraFiles.map(file => ({
             name: file.replace('Zebra_', '').replace(/_/g, ' '),
-            img: `image/fabrics/${encodeURIComponent(file)}.png`
+            // 修正为：image/Zebra/
+            img: `image/Zebra/${encodeURIComponent(file)}.png`
         })),
         cellular: cellularFiles.map(file => ({
             name: file.replace('Cellular_', '').replace(/_/g, ' '),
-            img: `image/fabrics/${encodeURIComponent(file)}.png`
+            img: `image/Cellular/${encodeURIComponent(file)}.png`
         })),
         roman: romanFiles.map(file => ({
             name: file.replace('Roman_', '').replace(/-/g, ' '),
-            img: `image/fabrics/${encodeURIComponent(file)}.png`
+            img: `image/Roman/${encodeURIComponent(file)}.png`
         })),
         woven: wovenFiles.map(file => ({
             name: file.replace('Woven_', '').replace(/-/g, ' '),
-            img: `image/fabrics/${encodeURIComponent(file)}.png`
+            img: `image/Woven/${encodeURIComponent(file)}.png`
         }))
     };
 
@@ -601,4 +603,5 @@
 </body>
 
 </html>
+
 
