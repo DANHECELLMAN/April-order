@@ -465,32 +465,40 @@
         "Woven_100% Bareloom Rammus-331", "Woven_100% Bareloom Red Knaf-324"
     ];
 
- const fabricData = {
-        blackout: blackoutFiles.map(file => ({
-            name: file.replace('Blackout_', '').replace(/_/g, ' '),
-            img: `image/fabrics/${encodeURIComponent(file)}.png` 
-        })),
-        filtering: filteringFiles.map(file => ({
-            name: file.replace('Light Filtering_', '').replace(/_/g, ' '),
-            img: `image/fabrics/${encodeURIComponent(file)}.png`
-        })),
-        zebra: zebraFiles.map(file => ({
-            name: file.replace('Zebra_', '').replace(/_/g, ' '),
-            img: `image/fabrics/${encodeURIComponent(file)}.png`
-        })),
-        cellular: cellularFiles.map(file => ({
-            name: file.replace('Cellular_', '').replace(/_/g, ' '),
-            img: `image/fabrics/${encodeURIComponent(file)}.png`
-        })),
-        roman: romanFiles.map(file => ({
-            name: file.replace('Roman_', '').replace(/-/g, ' '),
-            img: `image/fabrics/${encodeURIComponent(file)}.png`
-        })),
-        woven: wovenFiles.map(file => ({
-            name: file.replace('Woven_', '').replace(/-/g, ' '),
-            img: `image/fabrics/${encodeURIComponent(file)}.png`
-        }))
-    };
+ // 终极修复版：精准处理文件名中的百分号(%25)和空格(%20)
+const fabricData = {
+    blackout: blackoutFiles.map(file => ({
+        name: file.replace('Blackout_', '').replace(/_/g, ' '),
+        img: `image/fabrics/${file.replace(/%/g, '%25').replace(/ /g, '%20')}.png` 
+    })),
+    filtering: filteringFiles.map(file => ({
+        name: file.replace('Light Filtering_', '').replace(/_/g, ' '),
+        img: `image/fabrics/${file.replace(/%/g, '%25').replace(/ /g, '%20')}.png`
+    })),
+    zebra: zebraFiles.map(file => ({
+        name: file.replace('Zebra_', '').replace(/_/g, ' '),
+        img: `image/fabrics/${file.replace(/%/g, '%25').replace(/ /g, '%20')}.png`
+    })),
+    cellular: cellularFiles.map(file => ({
+        name: file.replace('Cellular_', '').replace(/_/g, ' '),
+        img: `image/fabrics/${file.replace(/%/g, '%25').replace(/ /g, '%20')}.png`
+    })),
+    roman: romanFiles.map(file => ({
+        name: file.replace('Roman_', '').replace(/-/g, ' '),
+        img: `image/fabrics/${file.replace(/%/g, '%25').replace(/ /g, '%20')}.png`
+    })),
+    woven: wovenFiles.map(file => ({
+        name: file.replace('Woven_', '').replace(/-/g, ' '),
+        img: `image/fabrics/${file.replace(/%/g, '%25').replace(/ /g, '%20')}.png`
+    }))
+};
+
+// 调试器：如果图片加载失败，按 F12 可以在 Console 看到具体哪个地址错了
+window.addEventListener('error', function(e) {
+    if (e.target.tagName === 'IMG') {
+        console.log('图片加载失败，请检查此路径:', e.target.src);
+    }
+}, true);
 
     let globalSelectedFabrics = new Map();
 
@@ -600,6 +608,7 @@
 </body>
 
 </html>
+
 
 
 
