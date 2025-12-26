@@ -465,10 +465,10 @@
         "Woven_100% Bareloom Rammus-331", "Woven_100% Bareloom Red Knaf-324"
     ];
 
- // 终极修复版：精准处理文件名中的百分号(%25)和空格(%20)
-const fabricData = {
+ const fabricData = {
     blackout: blackoutFiles.map(file => ({
         name: file.replace('Blackout_', '').replace(/_/g, ' '),
+        // 关键：将文件名里所有的 % 变成 %25，所有的空格变成 %20
         img: `image/fabrics/${file.replace(/%/g, '%25').replace(/ /g, '%20')}.png` 
     })),
     filtering: filteringFiles.map(file => ({
@@ -492,13 +492,6 @@ const fabricData = {
         img: `image/fabrics/${file.replace(/%/g, '%25').replace(/ /g, '%20')}.png`
     }))
 };
-
-// 调试器：如果图片加载失败，按 F12 可以在 Console 看到具体哪个地址错了
-window.addEventListener('error', function(e) {
-    if (e.target.tagName === 'IMG') {
-        console.log('图片加载失败，请检查此路径:', e.target.src);
-    }
-}, true);
 
     let globalSelectedFabrics = new Map();
 
@@ -608,6 +601,7 @@ window.addEventListener('error', function(e) {
 </body>
 
 </html>
+
 
 
 
