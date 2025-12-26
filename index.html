@@ -376,133 +376,51 @@
 </div>
 
 <script>
-    // 1. 数据定义
-    const blackoutFiles = [
-        "Blackout_Baltimore Anthracite 25", "Blackout_Baltimore Bronze 26", "Blackout_Baltimore Flint 27",
-        "Blackout_Bermuda Basalt 24", "Blackout_Bermuda Platinum 22", "Blackout_Bermuda Toffee 23",
-        "Blackout_BouvardiaDark Grey 17", "Blackout_BouvardiaMedium Grey 18", "Blackout_Cream White 06",
-        "Blackout_Linen Stone 01", "Blackout_Linen Stone 02", "Blackout_Safari Cream 04",
-        "Blackout_Safari Midnight 05", "Blackout_Safari Stone 07", "Blackout_Safari White 03",
-        "Blackout_SafariBiscuit 20", "Blackout_SafariSmoke 19", "Blackout_Treebark Obsidian 28",
-        "Blackout_Treebark Extra White 29", "Blackout_Vigor Cream 08", "Blackout_Vigor Milky 11",
-        "Blackout_Vigor RockWhite 21", "Blackout_Vigor sage 10", "Blackout_Vigor Wheat 09",
-        "Blackout_Vinyl Beige 13", "Blackout_Vinyl Black 14", "Blackout_Vinyl Grey 16",
-        "Blackout_Vinyl White 12", "Blackout_Vinyl WhiteGrey-15"
-    ];
-    // 新增：Light Filtering 数据
-    const filteringFiles = [
-        "Light Filtering_5% OPENNESS AVENTUS BLACK 54", "Light Filtering_5% OPENNESS AVENTUS ICE 51",
-        "Light Filtering_5% OPENNESS AVENTUS WHITE GREY 53", "Light Filtering_5% OPENNESS AVENTUSWHITE LINEN 52",
-        "Light Filtering_50% SUNSCREEN BLACK 61", "Light Filtering_50% SUNSCREEN COCOA 60",
-        "Light Filtering_50% SUNSCREEN GREY 59", "Light Filtering_50% SUNSCREEN WHITE 58",
-        "Light Filtering_70% Bouvardia Cream 64", "Light Filtering_70% Bouvardia Dark Grey 66",
-        "Light Filtering_70% Bouvardia Medium Grey 65", "Light Filtering_70% ESSENTIAL CREAM-68",
-        "Light Filtering_70% ESSENTIAL GREY-69", "Light Filtering_70% ESSENTIALWHITE 55",
-        "Light Filtering_70% LINEN CARAM EL-67", "Light Filtering_70% LINEN SAND 57",
-        "Light Filtering_70% LINEN WHITE 36", "Light Filtering_70% SAFAR IVORY 63",
-        "Light Filtering_70% SAFARI WHITE 62", "Light Filtering_70% TREEBARK BLACK-75",
-        "Light Filtering_70% TREEBARK CREAM-71", "Light Filtering_70% TREEBARK GREY-73",
-        "Light Filtering_70% TREEBARK NAVY-72", "Light Filtering_70% TREEBARK SHALLOW-74",
-        "Light Filtering_70% TREEBARK WHITE-70"
-    ];
-    // 新增：Zebra Shades 数据
-    const zebraFiles = [
-        "Zebra_60% BLACK-34", "Zebra_60% GREY-32", "Zebra_60% NAVY-33", 
-        "Zebra_60% WHITE-31", "Zebra_70% LINEN-43", "Zebra_85% GREY-35", 
-        "Zebra_85% WAVE BLACK-37", "Zebra_85% WAVE GREY-36", "Zebra_100% BLUE-44", 
-        "Zebra_100% CHARCOAL-46", "Zebra_100% DARK GREY-41", "Zebra_100% MID GREY-40",
-        "Zebra_100% OLIVE-45", "Zebra_100% ROCK BLACK-42", "Zebra_100% WHITE STONE-38", 
-        "Zebra_100% WHITE-39"
-    ];
-    // 新增：Cellular Shades 数据
-    const cellularFiles = [
-        "Cellular_Blackout Blue 110", "Cellular_Blackout Brown 107", 
-        "Cellular_Blackout Grey 109", "Cellular_Blackout Prestige Black-118", 
-        "Cellular_Blackout Prestige Brown-119", "Cellular_Blackout Prestige Grey White-116", 
-        "Cellular_Blackout Prestige Grey-117", "Cellular_Blackout Prestige Linen-120", 
-        "Cellular_Blackout Toffe 108", "Cellular_Blackout White 106", 
-        "Cellular_Light Filtering Blue 105", "Cellular_Light Filtering Brown 102", 
-        "Cellular_Light Filtering Grey 104", "Cellular_Light Filtering Toffe 103", 
-        "Cellular_Light Filtering White 101"
-    ];
-    // 新增：Roman Shades 数据
-    const romanFiles = [
-        "Roman_50% Clio Sand-225", "Roman_50% CrossLoom Grey-223", 
-        "Roman_50% CrossLoom Sand-222", "Roman_50% CrossLoom White-221", 
-        "Roman_60% Clio Grey-226", "Roman_60% Clio Mixblack-227", 
-        "Roman_60% Clio White-224", "Roman_70% Essential Smoky-229", 
-        "Roman_70% Essential White-228", "Roman_70% Linen White-234", 
-        "Roman_70% Safari Biscuit-233", "Roman_70% Safari Cream-232", 
-        "Roman_70% Safari Grey-231", "Roman_70% Safari White-230", 
-        "Roman_100% Dream Feather Grey-241", "Roman_100% Dream Fog Mist-240", 
-        "Roman_100% Dream Grey-242", "Roman_100% Dream White-239", 
-        "Roman_100% Linen Stone-219", "Roman_100% Linen White-220", 
-        "Roman_100% Safari Biscuit-238", "Roman_100% Safari Cream-237", 
-        "Roman_100% Safari Grey-236", "Roman_100% Safari White-235"
-    ];
-    // 新增：Woven Wood 数据
-    const wovenFiles = [
-        "Woven_50% Bareloom Bamboo Fiber-326", "Woven_50% Bareloom Flax Bamboo-332", 
-        "Woven_50% Bareloom Flax Reed-333", "Woven_50% Bareloom Hemp-334", 
-        "Woven_50% Bareloom Jute Flax-321", "Woven_50% Bareloom Jute-322", 
-        "Woven_50% Bareloom Knaf-323", "Woven_50% Bareloom Rammus-325", 
-        "Woven_50% Bareloom Rammus-327", "Woven_50% Bareloom Rammus-328", 
-        "Woven_50% Bareloom Rammus-329", "Woven_50% Bareloom Rammus-330", 
-        "Woven_50% Bareloom Rammus-331", "Woven_50% Bareloom Red Knaf-324", 
-        "Woven_70% Bareloom Bamboo Fiber-326", "Woven_70% Bareloom Flax Bamboo-332", 
-        "Woven_70% Bareloom Flax Bamboo-333", "Woven_70% Bareloom Hemp-334", 
-        "Woven_70% Bareloom Jute Flax-321", "Woven_70% Bareloom Jute-322", 
-        "Woven_70% Bareloom Knaf-323", "Woven_70% Bareloom Rammus-325", 
-        "Woven_70% Bareloom Rammus-327", "Woven_70% Bareloom Rammus-328", 
-        "Woven_70% Bareloom Rammus-329", "Woven_70% Bareloom Rammus-330", 
-        "Woven_70% Bareloom Rammus-331", "Woven_70% Bareloom Red Knaf-324", 
-        "Woven_100% Bareloom Bamboo Fiber-326", "Woven_100% Bareloom Flax Bamboo-332", 
-        "Woven_100% Bareloom Flax Reed-333", "Woven_100% Bareloom Hemp-334", 
-        "Woven_100% Bareloom Jute Flax-321", "Woven_100% Bareloom Jute-322", 
-        "Woven_100% Bareloom Knaf-323", "Woven_100% Bareloom Rammus-325", 
-        "Woven_100% Bareloom Rammus-327", "Woven_100% Bareloom Rammus-328", 
-        "Woven_100% Bareloom Rammus-329", "Woven_100% Bareloom Rammus-330", 
-        "Woven_100% Bareloom Rammus-331", "Woven_100% Bareloom Red Knaf-324"
-    ];
+    // 1. 数据定义 (文件名已同步：空格->下划线, %->pct)
+    const blackoutFiles = ["Blackout_Baltimore_Anthracite_25", "Blackout_Baltimore_Bronze_26", "Blackout_Baltimore_Flint_27", "Blackout_Bermuda_Basalt_24", "Blackout_Bermuda_Platinum_22", "Blackout_Bermuda_Toffee_23", "Blackout_BouvardiaDark_Grey_17", "Blackout_BouvardiaMedium_Grey_18", "Blackout_Cream_White_06", "Blackout_Linen_Stone_01", "Blackout_Linen_Stone_02", "Blackout_Safari_Cream_04", "Blackout_Safari_Midnight_05", "Blackout_Safari_Stone_07", "Blackout_Safari_White_03", "Blackout_SafariBiscuit_20", "Blackout_SafariSmoke_19", "Blackout_Treebark_Obsidian_28", "Blackout_Treebark_Extra_White_29", "Blackout_Vigor_Cream_08", "Blackout_Vigor_Milky_11", "Blackout_Vigor_RockWhite_21", "Blackout_Vigor_sage_10", "Blackout_Vigor_Wheat_09", "Blackout_Vinyl_Beige_13", "Blackout_Vinyl_Black_14", "Blackout_Vinyl_Grey_16", "Blackout_Vinyl_White_12", "Blackout_Vinyl_WhiteGrey-15"];
 
- // 定义一个万能路径处理器
-const solvePath = (fileName) => {
-    // 1. 去掉首尾可能存在的空格
-    const cleanName = fileName.trim();
-    // 2. 使用标准的 URL 编码（它能完美处理 5%, 50%, 100% 以及各种空格）
-    const encodedName = encodeURIComponent(cleanName);
-    // 3. 拼接完整路径
-    return `image/fabrics/${encodedName}.png`;
-};
+    const filteringFiles = ["Light_Filtering_5pct_OPENNESS_AVENTUS_BLACK_54", "Light_Filtering_5pct_OPENNESS_AVENTUS_ICE_51", "Light_Filtering_5pct_OPENNESS_AVENTUS_WHITE_GREY_53", "Light_Filtering_5pct_OPENNESS_AVENTUSWHITE_LINEN_52", "Light_Filtering_50pct_SUNSCREEN_BLACK_61", "Light_Filtering_50pct_SUNSCREEN_COCOA_60", "Light_Filtering_50pct_SUNSCREEN_GREY_59", "Light_Filtering_50pct_SUNSCREEN_WHITE_58", "Light_Filtering_70pct_Bouvardia_Cream_64", "Light_Filtering_70pct_Bouvardia_Dark_Grey_66", "Light_Filtering_70pct_Bouvardia_Medium_Grey_65", "Light_Filtering_70pct_ESSENTIAL_CREAM-68", "Light_Filtering_70pct_ESSENTIAL_GREY-69", "Light_Filtering_70pct_ESSENTIALWHITE_55", "Light_Filtering_70pct_LINEN_CARAM_EL-67", "Light_Filtering_70pct_LINEN_SAND_57", "Light_Filtering_70pct_LINEN_WHITE_36", "Light_Filtering_70pct_SAFAR_IVORY_63", "Light_Filtering_70pct_SAFARI_WHITE_62", "Light_Filtering_70pct_TREEBARK_BLACK-75", "Light_Filtering_70pct_TREEBARK_CREAM-71", "Light_Filtering_70pct_TREEBARK_GREY-73", "Light_Filtering_70pct_TREEBARK_NAVY-72", "Light_Filtering_70pct_TREEBARK_SHALLOW-74", "Light_Filtering_70pct_TREEBARK_WHITE-70"];
 
-const fabricData = {
-    blackout: blackoutFiles.map(file => ({
-        name: file.replace('Blackout_', '').replace(/_/g, ' '),
-        img: solvePath(file)
-    })),
-    filtering: filteringFiles.map(file => ({
-        name: file.replace('Light Filtering_', '').replace(/_/g, ' '),
-        img: solvePath(file)
-    })),
-    zebra: zebraFiles.map(file => ({
-        name: file.replace('Zebra_', '').replace(/_/g, ' '),
-        img: solvePath(file)
-    })),
-    cellular: cellularFiles.map(file => ({
-        name: file.replace('Cellular_', '').replace(/_/g, ' '),
-        img: solvePath(file)
-    })),
-    roman: romanFiles.map(file => ({
-        name: file.replace('Roman_', '').replace(/-/g, ' '),
-        img: solvePath(file)
-    })),
-    woven: wovenFiles.map(file => ({
-        name: file.replace('Woven_', '').replace(/-/g, ' '),
-        img: solvePath(file)
-    }))
-};
+    const zebraFiles = ["Zebra_60pct_BLACK-34", "Zebra_60pct_GREY-32", "Zebra_60pct_NAVY-33", "Zebra_60pct_WHITE-31", "Zebra_70pct_LINEN-43", "Zebra_85pct_GREY-35", "Zebra_85pct_WAVE_BLACK-37", "Zebra_85pct_WAVE_GREY-36", "Zebra_100pct_BLUE-44", "Zebra_100pct_CHARCOAL-46", "Zebra_100pct_DARK_GREY-41", "Zebra_100pct_MID_GREY-40", "Zebra_100pct_OLIVE-45", "Zebra_100pct_ROCK_BLACK-42", "Zebra_100pct_WHITE_STONE-38", "Zebra_100pct_WHITE-39"];
 
+    const cellularFiles = ["Cellular_Blackout_Blue_110", "Cellular_Blackout_Brown_107", "Cellular_Blackout_Grey_109", "Cellular_Blackout_Prestige_Black-118", "Cellular_Blackout_Prestige_Brown-119", "Cellular_Blackout_Prestige_Grey_White-116", "Cellular_Blackout_Prestige_Grey-117", "Cellular_Blackout_Prestige_Linen-120", "Cellular_Blackout_Toffe_108", "Cellular_Blackout_White_106", "Cellular_Light_Filtering_Blue_105", "Cellular_Light_Filtering_Brown_102", "Cellular_Light_Filtering_Grey_104", "Cellular_Light_Filtering_Toffe_103", "Cellular_Light_Filtering_White_101"];
+
+    const romanFiles = ["Roman_50pct_Clio_Sand-225", "Roman_50pct_CrossLoom_Grey-223", "Roman_50pct_CrossLoom_Sand-222", "Roman_50pct_CrossLoom_White-221", "Roman_60pct_Clio_Grey-226", "Roman_60pct_Clio_Mixblack-227", "Roman_60pct_Clio_White-224", "Roman_70pct_Essential_Smoky-229", "Roman_70pct_Essential_White-228", "Roman_70pct_Linen_White-234", "Roman_70pct_Safari_Biscuit-233", "Roman_70pct_Safari_Cream-232", "Roman_70pct_Safari_Grey-231", "Roman_70pct_Safari_White-230", "Roman_100pct_Dream_Feather_Grey-241", "Roman_100pct_Dream_Fog_Mist-240", "Roman_100pct_Dream_Grey-242", "Roman_100pct_Dream_White-239", "Roman_100pct_Linen_Stone-219", "Roman_100pct_Linen_White-220", "Roman_100pct_Safari_Biscuit-238", "Roman_100pct_Safari_Cream-237", "Roman_100pct_Safari_Grey-236", "Roman_100pct_Safari_White-235"];
+
+    const wovenFiles = ["Woven_50pct_Bareloom_Bamboo_Fiber-326", "Woven_50pct_Bareloom_Flax_Bamboo-332", "Woven_50pct_Bareloom_Flax_Reed-333", "Woven_50pct_Bareloom_Hemp-334", "Woven_50pct_Bareloom_Jute_Flax-321", "Woven_50pct_Bareloom_Jute-322", "Woven_50pct_Bareloom_Knaf-323", "Woven_50pct_Bareloom_Rammus-325", "Woven_50pct_Bareloom_Rammus-327", "Woven_50pct_Bareloom_Rammus-328", "Woven_50pct_Bareloom_Rammus-329", "Woven_50pct_Bareloom_Rammus-330", "Woven_50pct_Bareloom_Rammus-331", "Woven_50pct_Bareloom_Red_Knaf-324", "Woven_70pct_Bareloom_Bamboo_Fiber-326", "Woven_70pct_Bareloom_Flax_Bamboo-332", "Woven_70pct_Bareloom_Flax_Bamboo-333", "Woven_70pct_Bareloom_Hemp-334", "Woven_70pct_Bareloom_Jute_Flax-321", "Woven_70pct_Bareloom_Jute-322", "Woven_70pct_Bareloom_Knaf-323", "Woven_70pct_Bareloom_Rammus-325", "Woven_70pct_Bareloom_Rammus-327", "Woven_70pct_Bareloom_Rammus-328", "Woven_70pct_Bareloom_Rammus-329", "Woven_70pct_Bareloom_Rammus-330", "Woven_70pct_Bareloom_Rammus-331", "Woven_70pct_Bareloom_Red_Knaf-324", "Woven_100pct_Bareloom_Bamboo_Fiber-326", "Woven_100pct_Bareloom_Flax_Bamboo-332", "Woven_100pct_Bareloom_Flax_Reed-333", "Woven_100pct_Bareloom_Hemp-334", "Woven_100pct_Bareloom_Jute_Flax-321", "Woven_100pct_Bareloom_Jute-322", "Woven_100pct_Bareloom_Knaf-323", "Woven_100pct_Bareloom_Rammus-325", "Woven_100pct_Bareloom_Rammus-327", "Woven_100pct_Bareloom_Rammus-328", "Woven_100pct_Bareloom_Rammus-329", "Woven_100pct_Bareloom_Rammus-330", "Woven_100pct_Bareloom_Rammus-331", "Woven_100pct_Bareloom_Red_Knaf-324"];
+
+    // 统一格式化显示名称的函数
+    const formatName = (f) => f.replace(/_/g, ' ').replace(/pct/g, '%');
+
+    // 全局已选存储
     let globalSelectedFabrics = new Map();
+
+    const fabricData = {
+        blackout: blackoutFiles.map(file => ({
+            name: formatName(file.replace('Blackout_', '')),
+            img: `image/fabrics/Blackout/${file}.png`
+        })),
+        filtering: filteringFiles.map(file => ({
+            name: formatName(file.replace('Light_Filtering_', '')),
+            img: `image/fabrics/Light Filtering/${file}.png` // 注意这里文件夹名带空格
+        })),
+        zebra: zebraFiles.map(file => ({
+            name: formatName(file.replace('Zebra_', '')),
+            img: `image/fabrics/Zebra/${file}.png`
+        })),
+        cellular: cellularFiles.map(file => ({
+            name: formatName(file.replace('Cellular_', '')),
+            img: `image/fabrics/Cellular/${file}.png`
+        })),
+        roman: romanFiles.map(file => ({
+            name: formatName(file.replace('Roman_', '')),
+            img: `image/fabrics/Roman/${file}.png`
+        })),
+        woven: wovenFiles.map(file => ({
+            name: formatName(file.replace('Woven_', '')),
+            img: `image/fabrics/Woven/${file}.png`
+        }))
+    };
 
     // 2. 更新面料列表
     function updateFabricList() {
@@ -510,7 +428,7 @@ const fabricData = {
         const grid = document.getElementById('fabricGrid');
         const section = document.getElementById('fabricDetailSection');
         
-        if (!categoryInput) return;
+        if (!categoryInput || !grid) return;
         
         const category = categoryInput.value;
         grid.innerHTML = ''; 
@@ -524,7 +442,7 @@ const fabricData = {
                 div.innerHTML = `
                     <input type="checkbox" name="Selected_Fabrics" value="${item.name}" ${isChecked} onchange="toggleFabricSelection(this)">
                     <div class="item-ui"></div>
-                    <img src="${item.img}" onclick="zoomImg(event, this.src)" alt="${item.name}">
+                    <img src="${item.img}" onclick="zoomImg(event, this.src)" alt="${item.name}" onerror="this.src='https://placehold.co/150x150?text=404+Error'">
                     <span>${item.name}</span>`;
                 grid.appendChild(div);
             });
@@ -544,6 +462,7 @@ const fabricData = {
 
     function updateStatusBadge() {
         const badge = document.getElementById('fabricStatus');
+        if (!badge) return;
         if (globalSelectedFabrics.size > 0) {
             badge.innerText = "Ready / 已选";
             badge.className = "status-badge status-ok";
@@ -553,10 +472,11 @@ const fabricData = {
         }
     }
 
-    // 核心修改：渲染汇总区域并控制显示隐藏
     function renderSummary() {
         const summaryDiv = document.getElementById('selectedSummary');
         const persistentBox = document.getElementById('persistentSummary');
+        if (!summaryDiv || !persistentBox) return;
+
         const names = Array.from(globalSelectedFabrics.keys());
         
         if (names.length > 0) {
@@ -573,30 +493,43 @@ const fabricData = {
         updateFabricList();
     }
 
-    // 3. 通用的图片放大函数
-    function zoomImg() {
-        let src = "";
-        let e = null;
+    // 3. 通用的图片放大函数 (兼容旧版和其他板块)
+function zoomImg() {
+    let src = "";
+    let e = null;
 
-        if (arguments.length === 1) {
-            src = arguments[0];
-        } else if (arguments.length === 2) {
-            e = arguments[0];
-            src = arguments[1];
+    // 兼容多种调用方式：zoomImg(src) 或 zoomImg(event, src)
+    if (arguments.length === 1) {
+        src = arguments[0];
+    } else if (arguments.length >= 2) {
+        e = arguments[0];
+        src = arguments[1];
+    }
+
+    // 阻止点击事件冒泡，防止放大框刚打开就关闭
+    if (e && e.stopPropagation) {
+        e.preventDefault();
+        e.stopPropagation();
+    }
+
+    const modal = document.getElementById('modal');
+    const modalImg = document.getElementById('modal-img');
+
+    if (modal && modalImg) {
+        // 如果 src 是空的（可能是旧版代码传参逻辑不同），尝试从事件目标获取
+        if (!src && e && e.target) {
+            src = e.target.src;
         }
 
-        if (e && e.stopPropagation) {
-            e.preventDefault();
-            e.stopPropagation();
-        }
-
-        const modal = document.getElementById('modal');
-        const modalImg = document.getElementById('modal-img');
-        if (modal && modalImg) {
+        if (src) {
             modalImg.src = src;
             modal.style.display = 'flex';
+            console.log("正在放大图片:", src);
         }
+    } else {
+        console.error("找不到 ID 为 'modal' 或 'modal-img' 的弹窗元素！");
     }
+}
 
     function validateForm() {
         if (globalSelectedFabrics.size === 0) {
@@ -606,15 +539,15 @@ const fabricData = {
         }
         return true;
     }
+
+    // 初始化显示
+    window.onload = function() {
+        updateFabricList();
+        // 给所有分类按钮绑定变化事件
+        document.querySelectorAll('input[name="Fabric_Category"]').forEach(input => {
+            input.onchange = updateFabricList;
+        });
+    };
 </script>
 </body>
-
 </html>
-
-
-
-
-
-
-
-
