@@ -465,33 +465,40 @@
         "Woven_100% Bareloom Rammus-331", "Woven_100% Bareloom Red Knaf-324"
     ];
 
- // 统一处理函数：不管输入什么文件名，都转义成合法的 URL
-const getImgPath = (file) => `image/fabrics/${encodeURIComponent(file)}.png`;
+ // 定义一个万能路径处理器
+const solvePath = (fileName) => {
+    // 1. 去掉首尾可能存在的空格
+    const cleanName = fileName.trim();
+    // 2. 使用标准的 URL 编码（它能完美处理 5%, 50%, 100% 以及各种空格）
+    const encodedName = encodeURIComponent(cleanName);
+    // 3. 拼接完整路径
+    return `image/fabrics/${encodedName}.png`;
+};
 
 const fabricData = {
     blackout: blackoutFiles.map(file => ({
         name: file.replace('Blackout_', '').replace(/_/g, ' '),
-        img: getImgPath(file) 
+        img: solvePath(file)
     })),
     filtering: filteringFiles.map(file => ({
         name: file.replace('Light Filtering_', '').replace(/_/g, ' '),
-        img: getImgPath(file)
+        img: solvePath(file)
     })),
     zebra: zebraFiles.map(file => ({
         name: file.replace('Zebra_', '').replace(/_/g, ' '),
-        img: getImgPath(file)
+        img: solvePath(file)
     })),
     cellular: cellularFiles.map(file => ({
         name: file.replace('Cellular_', '').replace(/_/g, ' '),
-        img: getImgPath(file)
+        img: solvePath(file)
     })),
     roman: romanFiles.map(file => ({
         name: file.replace('Roman_', '').replace(/-/g, ' '),
-        img: getImgPath(file)
+        img: solvePath(file)
     })),
     woven: wovenFiles.map(file => ({
         name: file.replace('Woven_', '').replace(/-/g, ' '),
-        img: getImgPath(file)
+        img: solvePath(file)
     }))
 };
 
@@ -603,6 +610,7 @@ const fabricData = {
 </body>
 
 </html>
+
 
 
 
